@@ -59,3 +59,21 @@ services:
     container_name: heimdall
     environment:
       - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    volumes:
+      - ./share/Container/container-station-data/persistent/heimdall/config:/config
+    ports:
+      - 9000:80
+      - 443:443
+  bazarr:
+    image: linuxserver/bazarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - ./share/Container/container-station-data/persistent/bazarr/config:/config
+      - ./share/Multimedia/Video/Films:/movies
+      - ./share/Multimedia/Video/Series:/tv
+    ports:
